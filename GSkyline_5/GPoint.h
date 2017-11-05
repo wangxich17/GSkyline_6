@@ -16,7 +16,7 @@ public:
 	int index;			             
 	vector<GPoint*> ParentSet;             //父亲集合
 	vector<GPoint*> ChildrenSet;             //孩子集合
-	list<GPoint*> SimpleCSet;         //children whose parent is its first parent
+	list<GPoint*> SimpleCSet;         //children whose parent is its first parent 
 	GPoint* firstParent;              //the first parent of all Parent
 	bool isSkylinePoint;
 	bool isVisited;

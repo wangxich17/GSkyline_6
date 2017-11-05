@@ -185,7 +185,7 @@ void GSkyline::Print_layers()
 int  GSkyline::PWP(int k)
 {
 	PWiseP PW(k, allPoints);
-	return PW.PointWiseCount;
+	return PW.PwCount;
 }
 int  GSkyline::UWP(int k)
 {

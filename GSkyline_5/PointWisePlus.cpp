@@ -1,29 +1,25 @@
 #include "PointWisePlus.h"
-#include <fstream>
-#include <algorithm>
-#include <assert.h>
-#include <iostream>
+
 using namespace std;
-PWiseP::PWiseP(int k, vector<GPoint*> allPoints)
+PWiseP::PWiseP(int k, vector<GPoint*> PointCell)
 {
-	this->PointWisePlus(k, allPoints);
+	this->PwCount = 0;
+	this->Solve(k,this->PointWiseInit(k, PointCell));
 }
-void PWiseP::PointWisePlus(int k, vector<GPoint*> allPoints)
+GGroup PWiseP::PointWiseInit(int k, vector<GPoint*> PointCell)
 {
-	this->PointWiseCount = 0;
-	int len = allPoints.size();
 	GPoint* root = new GPoint();
-	for (int i = len - 1; i >= 0; i--) {
-		GPoint *p = allPoints[i];
-		int player = p->layer - 1;
-		if (player == -1) {
+	for (int i = PointCell.size() - 1; i >= 0; i--) {
+		GPoint *p = PointCell[i];
+		int p_layer = p->layer - 1;
+		if (p_layer == -1) {//最顶层
 			p->firstParent = root;
-			root->SimpleCSet.push_front(p);
+			root->SimpleCSet.push_front(p);//放入root的CS组
 		}
 		else {
 			GPoint *parent = NULL;
-			for (vector<GPoint*>::iterator it = p->ParentSet.begin(); it != p->ParentSet.end(); it++) {
-				if ((*it)->layer == player) {
+			for (vector<GPoint*>::iterator it = p->ParentSet.begin(); it != p->ParentSet.end(); it++) {//获取FirstParent并将p放入对应的CS
+				if ((*it)->layer == p_layer) {
 					if (parent == NULL) {
 						parent = *it;
 					}
@@ -33,33 +29,29 @@ void PWiseP::PointWisePlus(int k, vector<GPoint*> allPoints)
 				}
 			}
 			p->firstParent = parent;
-			if (parent) {
+			if (parent!=NULL) {
 				parent->SimpleCSet.push_front(p);
 			}
 		}
 	}
 
-	//breadth first
-
 	GGroup g;
 	g.pointSet.insert(root);
-	g.pointStack.push_back(root);
-	Solve(g, k);
+	g.Stack.push_back(root);
 }
 
-void  PWiseP::Solve(GGroup &g, int k) {
-	set<GPoint*> parentPoints;
-	for (vector<GPoint*>::iterator it = g.pointStack.begin() + 1; it != g.pointStack.end(); it++) {
+void  PWiseP::Solve(int k,GGroup &g) {
+	set<GPoint*> parentPoints;//g和g的所有父节点
+	for (vector<GPoint*>::iterator it = g.Stack.begin() + 1; it != g.Stack.end(); it++) {
 		parentPoints.insert(*it);
 		for (vector<GPoint*>::iterator ij = (*it)->ParentSet.begin(); ij != (*it)->ParentSet.end(); ij++) {
 			parentPoints.insert(*ij);
 		}
-
 	}
 
 	int psize = parentPoints.size();
-	GPoint* lastPoint = g.pointStack[g.pointStack.size() - 1];
-	for (list<GPoint*>::iterator it = (lastPoint->SimpleCSet).begin(); it != lastPoint->SimpleCSet.end(); it++) {
+	GPoint* lastPoint = g.Stack[g.Stack.size() - 1];
+	for (list<GPoint*>::iterator it = (lastPoint->SimpleCSet).begin(); it != lastPoint->SimpleCSet.end(); it++) {//g的尾节点的子节点集
 		int cpsize = psize;
 		if (parentPoints.find(*it) == parentPoints.end()) {
 			cpsize++;
@@ -73,7 +65,7 @@ void  PWiseP::Solve(GGroup &g, int k) {
 		if (cpsize > k) {
 			continue;
 		}
-		else if (cpsize == k && g.pointStack.size() == k) {
+		else if (cpsize == k && g.Stack.size() == k) {
 
 			GGroup ng;
 			ng.pointSet.insert(parentPoints.begin(), parentPoints.end());
@@ -81,15 +73,15 @@ void  PWiseP::Solve(GGroup &g, int k) {
 			for (vector<GPoint*>::iterator ik = (*it)->ParentSet.begin(); ik != (*it)->ParentSet.end(); ik++) {
 				ng.pointSet.insert(*ik);
 			}
-			PointWiseCount++;
+			PwCount++;
 			continue;
 
 		}
 
 		else {
-			g.pointStack.push_back(*it);
-			Solve(g, k);
-			g.pointStack.pop_back();
+			g.Stack.push_back(*it);
+			Solve(k,g);
+			g.Stack.pop_back();
 		}
 	}
 	// iterator all siblings.
@@ -113,23 +105,23 @@ void  PWiseP::Solve(GGroup &g, int k) {
 					it++;
 					continue;
 				}
-				else if (cpsize == k && g.pointStack.size() == k) {
+				else if (cpsize == k && g.Stack.size() == k) {
 					GGroup ng;
 					ng.pointSet.insert(parentPoints.begin(), parentPoints.end());
 					ng.pointSet.insert(*it);
 					for (vector<GPoint*>::iterator ik = (*it)->ParentSet.begin(); ik != (*it)->ParentSet.end(); ik++) {
 						ng.pointSet.insert(*ik);
 					}
-					PointWiseCount++;
+					PwCount++;
 					it++;
 					continue;
 
 				}
 
 				else {
-					g.pointStack.push_back(*it);
-					Solve(g, k);
-					g.pointStack.pop_back();
+					g.Stack.push_back(*it);
+					Solve(k,g);
+					g.Stack.pop_back();
 				}
 				it++;
 			}
