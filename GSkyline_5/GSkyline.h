@@ -22,6 +22,7 @@ public:
 	void SortPointsByLayer();
 	void SortPoints();
 	void ConstructingDSG();
+	void Print_layers();
 	vector<GGroup> Preprocessing(int k);
 	int PWP(int k);
 	int UWP(int k);

@@ -55,7 +55,9 @@ void  PWiseP::Solve(int k,GGroup &g) {
 	GPoint * parent = lastPoint->firstParent;
 	while (parent) {
 		if (parent->SimpleCSet.size() > 0) {
-			for (list<GPoint*>::iterator it = parent->SimpleCSet.end(); (*it) != lastPoint;it--){
+			list<GPoint*>::iterator it = parent->SimpleCSet.end();
+			it--;
+			for (; (*it) != lastPoint;it--){
 				this->JudgeNewElement(k, g, parentPoints.size(), it, parentPoints);
 			}
 		}
