@@ -4,7 +4,8 @@ using namespace std;
 PWiseP::PWiseP(int k, vector<GPoint*> PointCell)
 {
 	this->PwCount = 0;
-	this->Solve(k,this->PointWiseInit(k, PointCell));
+	GGroup g = this->PointWiseInit(k, PointCell);
+	this->Solve(k,g);
 }
 GGroup PWiseP::PointWiseInit(int k, vector<GPoint*> PointCell)
 {
