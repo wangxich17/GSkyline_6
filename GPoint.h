@@ -13,9 +13,9 @@ public:
 	vector<double> v;
 	int layer;
 	int id;
-	int index;			             
-	vector<GPoint*> ParentSet;             //父亲集合
-	vector<GPoint*> ChildrenSet;             //孩子集合
+	int index;
+	vector<GPoint *> ParentSet;             //鐖朵翰闆嗗悎
+	vector<GPoint *> ChildrenSet;             //瀛╁瓙闆嗗悎
 	list<GPoint*> SimpleCSet;         //children whose parent is its first parent
 	GPoint* firstParent;              //the first parent of all Parent
 	bool isSkylinePoint;

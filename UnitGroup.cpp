@@ -1,7 +1,8 @@
-#include"Unitgroup.h"
+#include"UnitGroup.h"
 #include<iostream>
 #include<algorithm>
 #include <assert.h>
+#include <climits>
 
 Unit::Unit(GPoint* p) {
 	index = p->index;

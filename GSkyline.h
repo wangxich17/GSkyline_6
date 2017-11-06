@@ -7,6 +7,8 @@
 #include"GGroup.h"
 #include"PointWisePlus.h"
 #include"UnitWisePlus.h"
+#include <string>
+
 using namespace std;
 
 

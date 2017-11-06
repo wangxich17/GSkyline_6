@@ -4,7 +4,7 @@
 #include <set>
 #include <stack>
 #include"GPoint.h"
-#include"Unitgroup.h"
+#include"UnitGroup.h"
 class GGroup
 {
 public:

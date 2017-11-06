@@ -1,10 +1,18 @@
 #include "GSkyline.h"
 #include<iostream>
 #include<vector>
-#include<time.h>
-#include <windows.h>
+#include<ctime>
 #include<fstream>
 using namespace std;
+
+unsigned long GetTickCount() {
+	struct timespec ts;
+
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+
+	return (ts.tv_sec * 1000 + ts.tv_nsec / 1000000);
+}
+
 int experiment(string inputfilename, int k, string outputfilename)
 {
 	ifstream ifile(inputfilename);

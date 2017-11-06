@@ -14,7 +14,7 @@ bool ComparePointByLayer(GPoint* a, GPoint* b) {
 }
 void GSkyline::SortPoints()
 {
-	//½«µã¼¯ÅÅÐò
+	//å°†ç‚¹é›†æŽ’åº
 	sort(this->allPoints.begin(), this->allPoints.end(), ComparePoints);
 }
 void GSkyline::SortPointsByLayer() {
@@ -88,7 +88,7 @@ void GSkyline::ConstructingDSG()
 			}
 			else
 			{
-				//Ê¹ÓÃ¶þ·Ö²éÕÒ·¨
+				//ä½¿ç”¨äºŒåˆ†æŸ¥æ‰¾æ³•
 				int l = 0, r = maxlayer, m;
 				while (l < r)
 				{

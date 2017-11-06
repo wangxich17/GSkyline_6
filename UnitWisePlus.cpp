@@ -10,7 +10,7 @@ UWiseP::UWiseP(int k, bool optimization, vector<GPoint*> allPoints, vector<vecto
 }
 vector<GGroup> UWiseP::UnitWiseP(int k, vector<GPoint*> allPoints)
 {
-	throw exception("unimplemented");
+	throw exception();
 	return vector<GGroup>();
 }
 UnitGroup UWiseP::getGLast(GPoint* p, vector<GPoint*> allPoints) {

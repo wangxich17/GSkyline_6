@@ -37,7 +37,8 @@ public:
 	void insert(GPoint* p);
 	void Print();
 	void PrintAsc();
-	void UnitGroup::PrintDetail();
+
+	void PrintDetail();
 	int allPointSize();
 };
 #endif
