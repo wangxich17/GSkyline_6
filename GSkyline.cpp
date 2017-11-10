@@ -45,10 +45,6 @@ bool ComparePointByLayer(GPoint* a, GPoint* b) {
 }
 void GSkyline::SortPoints()
 {
-<<<<<<< HEAD:GSkyline.cpp
-	//将点集排序
-=======
->>>>>>> a6253a618074fe52b3502e122624ecaf6299d07e:GSkyline_5/GSkyline.cpp
 	sort(this->allPoints.begin(), this->allPoints.end(), ComparePoints);
 }
 void GSkyline::SortPointsByLayer() {
@@ -96,28 +92,8 @@ void GSkyline::ConstructingDSG()
 			int l = 0, r = maxlayer, mid;
 			while (l < r)
 			{
-<<<<<<< HEAD:GSkyline.cpp
-				p->layer = 0;
-				p->isSkylinePoint = true;
-				layers[0].push_back(p);
-			}
-			else if ((*(layers[layers.size() - 1][layers[layers.size() - 1].size() - 1])).isDomain(*p))
-			{
-				p->layer = ++maxlayer;
-				p->isSkylinePoint = false;
-				vector<GPoint*>layer;
-				layer.push_back(p);
-				layers.push_back(layer);
-			}
-			else
-			{
-				//使用二分查找法
-				int l = 0, r = maxlayer, m;
-				while (l < r)
-=======
 				mid = (l + r) >> 1;
 				if ((*(layers[mid][layers[mid].size() - 1])).isDomain(*p))
->>>>>>> a6253a618074fe52b3502e122624ecaf6299d07e:GSkyline_5/GSkyline.cpp
 				{
 					l = mid + 1;
 				}
