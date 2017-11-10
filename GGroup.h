@@ -8,12 +8,11 @@
 class GGroup
 {
 public:
-	vector<GPoint*> pointStack;
+	vector<GPoint*> Stack;
 	set<GPoint*> pointSet;
 	int tail;//tail set
 	set<GPoint*> ChildSet;
 	int maxLayer;
-
 public:
 	void CalculateCS();
 	bool VerifyPoint(GPoint* p);

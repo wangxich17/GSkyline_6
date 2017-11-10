@@ -62,7 +62,7 @@ int experiment(string inputfilename, int k, string outputfilename)
 		try {
 			int cnt = skyline.PWP(k);
 			time_end = GetTickCount();
-			cout << "get result group num:" << cnt + preNum << endl;
+			cout << "get result group num:" << cnt + preNum <<endl;
 			printf("get result group num:%d\n", cnt + preNum);
 		}
 		catch (exception &e) {
