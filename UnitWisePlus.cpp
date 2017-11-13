@@ -8,17 +8,7 @@ UWiseP::UWiseP(int k, bool optimization, vector<GPoint*> allPoints, vector<vecto
 {
 	this->UnitWisePlus(k, optimization, allPoints, layers);
 }
-vector<GGroup> UWiseP::UnitWiseP(int k, vector<GPoint*> allPoints)
-{
-	throw exception();
-	return vector<GGroup>();
-}
-UnitGroup UWiseP::getGLast(GPoint* p, vector<GPoint*> allPoints) {
-	UnitGroup ret;
-	for (int i = p->index; i >= 0; i--)
-		ret.insert(allPoints[i]);
-	return ret;
-}
+
 
 UnitGroup UWiseP::getGLast(UnitGroup ug, vector<GPoint*> allPoints) {
 	set<GPoint*>::iterator it = ug.unitSet.begin();
@@ -47,9 +37,6 @@ void UWiseP::UnitWisePlus(int k, bool optimization, vector<GPoint*> allPoints, v
 			resultNum++;
 			break;
 		}
-		else if (u1 + 1 < k)
-			break;
-
 		vector<UnitGroup> now_layer_i_ugs;
 		vector<UnitGroup> last_layer_i_ugs;
 		now_layer_i_ugs.push_back(ug1);
