@@ -11,12 +11,15 @@
 using namespace std;
 
 
-class PWiseP
-{
+class PWiseP {
 public:
-	int PwCount;
-	PWiseP(int k, vector<GPoint*> allPoints);
-	void Solve( int k,GGroup & g);
-	int JudgeNewElement(int k, GGroup& g, int cpsize, list<GPoint*>::iterator it, set<GPoint*> &parentPoints);
-	GGroup PointWiseInit(int k, vector<GPoint*> allPoints);
+    int PwCount;
+
+    PWiseP(int k, vector<GPoint *> allPoints);
+
+    void Solve(int k, GGroup &g);
+
+    int JudgeNewElement(int k, GGroup &g, int cpsize, list<GPoint *>::iterator it, set<GPoint *> &parentPoints);
+
+    GGroup PointWiseInit(int k, vector<GPoint *> allPoints);
 };
