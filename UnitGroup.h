@@ -3,17 +3,6 @@
 #include<set>
 #include"GPoint.h"
 
-class Unit
-{
-public:
-	int index;
-	set<GPoint*> pSet;
-	set<GPoint*> pointSet;
-	GPoint* point;
-public:
-	Unit(GPoint* p);
-};
-
 struct classcomp
 {
 	bool operator()(GPoint* a, GPoint* b) {

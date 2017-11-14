@@ -134,7 +134,7 @@ vector<GGroup> GSkyline::Preprocessing(int k) {
 	for (int i = 0; i < allPoints.size(); i++) {
 		GPoint* p = allPoints[i];
 		if (p->layer > k) {
-			continue;
+			break;
 		}
 		if (p->ParentSet.size() + 1 == k) {
 			GGroup ng;
