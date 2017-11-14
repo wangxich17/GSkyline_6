@@ -42,40 +42,6 @@ int UnitGroup::allPointSize() {
 }
 
 
-
-bool compareById(GPoint* a, GPoint*b) {
-	return a->id < b->id;
-}
-
-void UnitGroup::PrintAsc() {
-	std::cout << "{";
-	set<GPoint*>::iterator it = merge.begin();
-	while (true)
-	{
-		cout << "p" << (*it)->id;
-		it++;
-		if (it != merge.end())
-		{
-			std::cout << ",";
-		}
-		else
-		{
-			break;
-		}
-	}
-	cout << "}" << endl;
-}
-void UnitGroup::PrintDetail() {
-	cout << "unit:";
-	for (set<GPoint*>::iterator it = unitSet.begin(); it != unitSet.end(); it++) {
-		cout << 'p' << (*it)->id << ":" << (*it)->index << ',';
-	}
-	cout << "parent:";
-	for (set<GPoint*>::iterator it = allParentSet.begin(); it != allParentSet.end(); it++) {
-		cout << 'p' << (*it)->id << ":" << (*it)->index << ',';
-	}
-	cout << "size:" << size << endl;
-}
 UnitGroup::~UnitGroup() {
 	set<GPoint*>().swap(allParentSet);
 	set<GPoint*>().swap(unitSet);

@@ -24,10 +24,7 @@ public:
 	~UnitGroup();
 	void clearUnitGroup();
 	void insert(GPoint* p);
-	void Print();
-	void PrintAsc();
 
-	void PrintDetail();
 	int allPointSize();
 };
 #endif
