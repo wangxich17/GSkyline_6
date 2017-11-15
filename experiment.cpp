@@ -60,7 +60,8 @@ int experiment(string inputfilename, int k, string outputfilename)
 		printf("PointWisePlus start....................................................\n");
 		time_start = GetTickCount();
 		try {
-			int cnt = skyline.PWP(k);
+			//int cnt = skyline.PWP(k);
+			int cnt = 0;
 			time_end = GetTickCount();
 			cout << "get result group num:" << cnt + preNum <<endl;
 			printf("get result group num:%d\n", cnt + preNum);
@@ -78,11 +79,11 @@ int experiment(string inputfilename, int k, string outputfilename)
 		cout << "UnitWisePlus start...................................................." << endl;
 		printf("UnitWisePlus start....................................................\n");
 		time_start = GetTickCount();
-		int uwiseNum = skyline.UWP(k);
+		long uwiseNum = skyline.UWP(k);
 		time_end = GetTickCount();
 		cout << "UnitWisePlus get result group num:" << (uwiseNum + preNum) << endl;
 		cout << "UnitWisePlus cost time: " << (time_end - time_start) << " ms" << endl;
-		printf("UnitWisePlus get result group num:%d\n", (uwiseNum + preNum));
+		printf("UnitWisePlus get result group num:%ld\n", (uwiseNum + preNum));
 		printf("UnitWisePlus cost time:%d ms\n", (time_end - time_start));
 		cout << "UnitWisePlus end......................................................" << endl << endl;
 		printf("UnitWisePlus end......................................................\n\n");

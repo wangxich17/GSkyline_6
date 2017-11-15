@@ -33,6 +33,18 @@ void UWiseP::UnitWisePlus(int k, bool optimization, vector<GPoint*> allPoints, v
 		vector<GPoint*> points;
 		points.push_back(allPoints[u1]);
 		UnitGroup ug1(points);
+		if ((allPoints[u1]->layer == 0) && (u1+1>=k))
+		{
+			printf("resultnum:%d\n", u1);
+			long num1 = 1;
+			long num2 = 1;
+			for (int i = u1+2-k;i<=u1+1;i++)
+				num1 = num1 * i;
+			for (int i = 1;i<=k;i++)
+				num2 = num2 * i;
+			resultNum +=  num1/num2;
+			break;
+		}
 		if (u1 + 1 == k) {
 			resultNum++;
 			break;
@@ -46,18 +58,18 @@ void UWiseP::UnitWisePlus(int k, bool optimization, vector<GPoint*> allPoints, v
 			vector<UnitGroup>().swap(last_layer_i_ugs);
 			last_layer_i_ugs = now_layer_i_ugs;
 			vector<UnitGroup>().swap(now_layer_i_ugs);
-			now_layer_i_ugs.clear();
+			//now_layer_i_ugs.clear();
 			for (vector<UnitGroup>::iterator it = last_layer_i_ugs.begin(); it != last_layer_i_ugs.end(); it++) {
 				UnitGroup ug = *it;
-				if (optimization) {
-					UnitGroup last = getGLast(ug, allPoints);
-					if (last.size == k) {
-						resultNum++;
-						return;
-					}
-					else if (last.size < k)
-						return;
-				}
+				// if (optimization) {
+				// 	UnitGroup last = getGLast(ug, allPoints);
+				// 	if (last.size == k) {
+				// 		resultNum++;
+				// 		return;
+				// 	}
+				// 	else if (last.size < k)
+				// 		return;
+				// }
 				set<GPoint*> ps = it->allParentSet;
 				for (int j = ug.tail; j >= 0; j--) {
 					if (ps.find(allPoints[j]) == ps.end()) {

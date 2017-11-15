@@ -5,13 +5,7 @@
 #include <climits>
 
 
-UnitGroup::UnitGroup(vector<GPoint*> vp) {
-	tail = INT_MAX;
-	size = 0;
-	for (vector<GPoint*>::iterator it = vp.begin(); it != vp.end(); it++) {
-		insert(*it);
-	}
-}
+
 
 UnitGroup::UnitGroup() {
 	tail = INT_MAX;
@@ -23,6 +17,13 @@ UnitGroup::UnitGroup(const UnitGroup& u) {
 	allParentSet = u.allParentSet;
 	unitSet = u.unitSet;
 	merge = u.merge;
+}
+UnitGroup::UnitGroup(vector<GPoint*> vp) {
+	tail = INT_MAX;
+	size = 0;
+	for (vector<GPoint*>::iterator it = vp.begin(); it != vp.end(); it++) {
+		insert(*it);
+	}
 }
 
 void UnitGroup::insert(GPoint* p) {

@@ -13,8 +13,8 @@ int main()
 //	cout << "Please enter the path to save the output file:" << endl;
 //	string output;
 //	cin >> output;
-	string filename = "anti_2.txt";
-	int k = 2;
+	string filename = "inde_8.txt";
+	int k = 4;
 	string output = "re.txt";
 	if (experiment(filename, k, output) == 0)
 	{
