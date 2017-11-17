@@ -16,5 +16,6 @@ public:
 public:
 	void CalculateCS();
 	bool VerifyPoint(GPoint* p);
+	virtual ~GGroup();
 };
 #endif
