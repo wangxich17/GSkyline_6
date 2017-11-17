@@ -4,16 +4,6 @@
 #include <assert.h>
 #include <climits>
 
-Unit::Unit(GPoint* p) {
-	index = p->index;
-	vector<GPoint*>::iterator it;
-	for (it = p->ParentSet.begin(); it != p->ParentSet.end(); it++)
-	{
-		pointSet.insert(*it);
-	}
-	pointSet.insert(p);
-	point = p;
-}
 
 UnitGroup::UnitGroup(vector<GPoint*> vp) {
 	tail = INT_MAX;
