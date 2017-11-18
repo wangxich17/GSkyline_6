@@ -4,28 +4,14 @@
 #include <iostream>
 #include"UnitWisePlus.h"
 using namespace std;
-UWiseP::UWiseP(int k, bool optimization, vector<GPoint*> allPoints, vector<vector<GPoint*>> layers)
+UWiseP::UWiseP(int k, vector<GPoint*> allPoints, vector<vector<GPoint*>> layers)
 {
-	this->UnitWisePlus(k, optimization, allPoints, layers);
+	this->UnitWisePlus(k, allPoints, layers);
 }
 
 
-UnitGroup UWiseP::getGLast(UnitGroup ug, vector<GPoint*> allPoints) {
-	set<GPoint*>::iterator it = ug.unitSet.begin();
-	GPoint* lastUnit = *it;
-	UnitGroup ret;
-	for (; it != ug.unitSet.end(); it++) {
-		ret.insert(*it);
-		if ((*it)->index < lastUnit->index)
-			lastUnit = *it;
-	}
-	for (int i = lastUnit->index - 1; i >= 0; i--)
-		ret.insert(allPoints[i]);
-	return ret;
-}
 
-
-void UWiseP::UnitWisePlus(int k, bool optimization, vector<GPoint*> allPoints, vector<vector<GPoint*>> layers)
+void UWiseP::UnitWisePlus(int k, vector<GPoint*> allPoints, vector<vector<GPoint*>> layers)
 {
 	this->resultNum = 0;
 	vector<UnitGroup> result;
@@ -35,7 +21,6 @@ void UWiseP::UnitWisePlus(int k, bool optimization, vector<GPoint*> allPoints, v
 		UnitGroup ug1(points);
 		if ((allPoints[u1]->layer == 0) && (u1+1>=k))
 		{
-			printf("resultnum:%d\n", u1);
 			long num1 = 1;
 			long num2 = 1;
 			for (int i = u1+2-k;i<=u1+1;i++)
@@ -61,15 +46,6 @@ void UWiseP::UnitWisePlus(int k, bool optimization, vector<GPoint*> allPoints, v
 			//now_layer_i_ugs.clear();
 			for (vector<UnitGroup>::iterator it = last_layer_i_ugs.begin(); it != last_layer_i_ugs.end(); it++) {
 				UnitGroup ug = *it;
-				// if (optimization) {
-				// 	UnitGroup last = getGLast(ug, allPoints);
-				// 	if (last.size == k) {
-				// 		resultNum++;
-				// 		return;
-				// 	}
-				// 	else if (last.size < k)
-				// 		return;
-				// }
 				set<GPoint*> ps = it->allParentSet;
 				for (int j = ug.tail; j >= 0; j--) {
 					if (ps.find(allPoints[j]) == ps.end()) {

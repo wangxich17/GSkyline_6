@@ -11,8 +11,7 @@ class UWiseP
 {
 public:
 	long resultNum;
-	UWiseP(int k, bool optimization, vector<GPoint*> allPoints, vector<vector<GPoint*>> layers);
-	void UnitWisePlus(int k, bool optimization, vector<GPoint*> allPoints, vector<vector<GPoint*>> layers);
-	UnitGroup getGLast(UnitGroup p, vector<GPoint*> allPoints);
+	UWiseP(int k, vector<GPoint*> allPoints, vector<vector<GPoint*>> layers);
+	void UnitWisePlus(int k, vector<GPoint*> allPoints, vector<vector<GPoint*>> layers);
 };
 #endif

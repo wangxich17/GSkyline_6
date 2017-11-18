@@ -159,6 +159,6 @@ int  GSkyline::PWP(int k)
 }
 int  GSkyline::UWP(int k)
 {
-	UWiseP UP(k, false, allPoints, layers);
+	UWiseP UP(k, allPoints, layers);
 	return UP.resultNum;
 }
