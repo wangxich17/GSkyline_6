@@ -60,7 +60,7 @@ int experiment(string inputfilename, int k, string outputfilename)
 		printf("PointWisePlus start....................................................\n");
 		time_start = GetTickCount();
 		try {
-			//int cnt = skyline.PWP(k);
+			int cnt = skyline.PWP(k);
 			int cnt = 0;
 			time_end = GetTickCount();
 			cout << "get result group num:" << cnt + preNum <<endl;
