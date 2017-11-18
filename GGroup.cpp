@@ -31,3 +31,7 @@ bool GGroup::VerifyPoint(GPoint* p)
 	}
 	return true;
 }
+
+GGroup::~GGroup() {
+
+}

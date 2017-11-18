@@ -5,6 +5,7 @@
 #include<assert.h>
 #include<cstring>
 #include"GSkyline.h"
+#include "PointWise.h"
 
 using namespace std;
 
