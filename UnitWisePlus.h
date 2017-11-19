@@ -10,7 +10,7 @@ using namespace std;
 class UWiseP
 {
 public:
-	long resultNum;
+	long long resultNum;
 	UWiseP(int k, vector<GPoint*> allPoints, vector<vector<GPoint*>> layers);
 	void UnitWisePlus(int k, vector<GPoint*> allPoints, vector<vector<GPoint*>> layers);
 };

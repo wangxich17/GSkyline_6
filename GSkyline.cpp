@@ -157,7 +157,7 @@ int  GSkyline::PWP(int k)
 	PWiseP PW(k, allPoints);
 	return PW.PwCount;
 }
-int  GSkyline::UWP(int k)
+long long  GSkyline::UWP(int k)
 {
 	UWiseP UP(k, allPoints, layers);
 	return UP.resultNum;

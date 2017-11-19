@@ -35,9 +35,9 @@ int experiment(string inputfilename, int k, string outputfilename)
 		cout << "size:" << skyline.allPoints.size() << endl;
 		cout << "layers:" << skyline.layers.size() << endl;
 		cout << "Constructing DSG cost time:" << time_end - time_start << "ms" << endl;
-		printf("size:%d\n", skyline.allPoints.size());
-		printf("layers:%d\n", skyline.layers.size());
-		printf("Constructing DSG cost time:%d ms\n", time_end - time_start);
+		printf("size:%ld\n", skyline.allPoints.size());
+		printf("layers:%ld\n", skyline.layers.size());
+		printf("Constructing DSG cost time:%ld ms\n", time_end - time_start);
 		cout << "Constructing DSG........................................................." << endl << endl;
 		printf("Constructing DSG.........................................................\n\n");
 
@@ -49,12 +49,13 @@ int experiment(string inputfilename, int k, string outputfilename)
 		time_end = GetTickCount();
 		cout << "Preprocessing cost time:" << time_end - time_start << "ms" << endl;
 		cout << "Preprocessing result:" << endl;
-		printf("Preprocessing cost time:%d ms\n", time_end - time_start);
+		printf("Preprocessing cost time:%ld ms\n", time_end - time_start);
 		printf("Preprocessing result:\n");
 		int preNum = pre.size();
+
 		cout << "Preprocessing end....................................................." << endl << endl;
 		printf("Preprocessing end.....................................................\n\n");
-
+		printf("prenum:%d\n", preNum);
 
 		cout << "PointWisePlus start..................................................." << endl;
 		printf("PointWisePlus start....................................................\n");
@@ -71,7 +72,7 @@ int experiment(string inputfilename, int k, string outputfilename)
 			printf(e.what());
 		}
 		cout << "Point wise cost time: " << (time_end - time_start) << " ms" << endl;
-		printf("Point wise cost time:%d ms\n", time_end - time_start);
+		printf("Point wise cost time:%ld ms\n", time_end - time_start);
 		cout << "Point Wise end........................................................" << endl << endl;
 		printf("Point Wise end.......................................................\n\n");
 
@@ -79,12 +80,12 @@ int experiment(string inputfilename, int k, string outputfilename)
 		cout << "UnitWisePlus start...................................................." << endl;
 		printf("UnitWisePlus start....................................................\n");
 		time_start = GetTickCount();
-		long uwiseNum = skyline.UWP(k);
+		long long uwiseNum = skyline.UWP(k);
 		time_end = GetTickCount();
 		cout << "UnitWisePlus get result group num:" << (uwiseNum + preNum) << endl;
 		cout << "UnitWisePlus cost time: " << (time_end - time_start) << " ms" << endl;
-		printf("UnitWisePlus get result group num:%ld\n", (uwiseNum + preNum));
-		printf("UnitWisePlus cost time:%d ms\n", (time_end - time_start));
+		printf("UnitWisePlus get result group num:%lld\n", (uwiseNum + preNum));
+		printf("UnitWisePlus cost time:%ld ms\n", (time_end - time_start));
 		cout << "UnitWisePlus end......................................................" << endl << endl;
 		printf("UnitWisePlus end......................................................\n\n");
 		outFile.close();

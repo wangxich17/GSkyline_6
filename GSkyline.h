@@ -35,7 +35,7 @@ public:
 
     int PWP(int k);
 
-    int UWP(int k);
+    long long UWP(int k);
 };
 
 #endif

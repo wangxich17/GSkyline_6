@@ -21,8 +21,8 @@ void UWiseP::UnitWisePlus(int k, vector<GPoint*> allPoints, vector<vector<GPoint
 		UnitGroup ug1(points);
 		if ((allPoints[u1]->layer == 0) && (u1+1>=k))
 		{
-			long num1 = 1;
-			long num2 = 1;
+			long long num1 = 1;
+			long long num2 = 1;
 			for (int i = u1+2-k;i<=u1+1;i++)
 				num1 = num1 * i;
 			for (int i = 1;i<=k;i++)
@@ -43,9 +43,11 @@ void UWiseP::UnitWisePlus(int k, vector<GPoint*> allPoints, vector<vector<GPoint
 			vector<UnitGroup>().swap(last_layer_i_ugs);
 			last_layer_i_ugs = now_layer_i_ugs;
 			vector<UnitGroup>().swap(now_layer_i_ugs);
-			//now_layer_i_ugs.clear();
-			for (vector<UnitGroup>::iterator it = last_layer_i_ugs.begin(); it != last_layer_i_ugs.end(); it++) {
-				UnitGroup ug = *it;
+			vector<UnitGroup>::iterator it;
+			UnitGroup ug;
+			while(true){
+				it = last_layer_i_ugs.begin();
+				ug = *it;
 				set<GPoint*> ps = it->allParentSet;
 				for (int j = ug.tail; j >= 0; j--) {
 					if (ps.find(allPoints[j]) == ps.end()) {
@@ -54,10 +56,30 @@ void UWiseP::UnitWisePlus(int k, vector<GPoint*> allPoints, vector<vector<GPoint
 						new_ug.tail = j - 1;
 						if (new_ug.size == k)
 							resultNum++;
-						else if (new_ug.allPointSize() < k)
+						else if (new_ug.allPointSize() < k){
+							if ((allPoints[j]->layer==0)&&(j>k)){
+								int ii = 0;
+								set<GPoint*> temp = new_ug.allParentSet;
+								for (set<GPoint*>::iterator tt = temp.begin(); tt != temp.end(); tt++) {
+									if ((*tt)->layer == 0)ii++;
+								}
+								int kk = k-1-ii;
+								long long num1 = 1;
+								long long num2 = 1;
+								for (int ii = j+1-kk;ii<=j;ii++)
+									num1 = num1 * ii;
+								for (int i = 1;ii<=kk;ii++)
+									num2 = num2 * ii;
+								resultNum +=  num1/num2;
+								break;
+							}
 							now_layer_i_ugs.push_back(new_ug);
+						}
 					}
 				}
+				last_layer_i_ugs.erase(it);
+				if (last_layer_i_ugs.empty())
+				break;
 			}
 			if (now_layer_i_ugs.empty())
 				break;
